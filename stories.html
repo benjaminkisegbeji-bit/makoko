@@ -5,20 +5,19 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Makoko — On the Lagoon. Discover the people, stories, culture and life of Makoko.">
+        content="Makoko Stories — real people, experiences, history and community voices from Makoko.">
 
-    <title>Makoko — On the Lagoon</title>
+    <title>Stories — Makoko On The Lagoon</title>
 
 
     <style>
 
-        /* =====================================================
+        /* =========================
            RESET
-        ===================================================== */
+        ========================= */
 
         * {
             margin: 0;
@@ -31,17 +30,33 @@
         }
 
         body {
-            font-family:
-                Inter,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
 
             background: #071313;
             color: #f4f1e8;
+
             line-height: 1.6;
+
             overflow-x: hidden;
+        }
+
+        :root {
+            --background: #071313;
+            --surface: #0d2020;
+            --surface-light: #14302f;
+
+            --gold: #d6b46a;
+            --gold-light: #e8cf8c;
+
+            --teal: #6fc5bd;
+
+            --white: #f4f1e8;
+            --muted: #9eafaa;
+
+            --border: rgba(255,255,255,0.12);
+
+            --max-width: 1450px;
         }
 
         a {
@@ -54,94 +69,61 @@
         }
 
 
-        /* =====================================================
-           VARIABLES
-        ===================================================== */
-
-        :root {
-
-            --background: #071313;
-
-            --surface: #0d2020;
-
-            --surface-light: #14302f;
-
-            --gold: #d6b46a;
-
-            --gold-light: #e8cf8c;
-
-            --teal: #6fc5bd;
-
-            --white: #f4f1e8;
-
-            --muted: #9eafaa;
-
-            --border: rgba(255,255,255,0.12);
-
-            --max-width: 1450px;
-        }
-
-
-        /* =====================================================
+        /* =========================
            NAVIGATION
-        ===================================================== */
+        ========================= */
 
         .navbar {
-
             position: fixed;
 
             top: 0;
             left: 0;
 
             width: 100%;
-
             height: 82px;
 
             padding: 0 6%;
 
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
             z-index: 1000;
 
-            transition: 0.35s ease;
+            transition: .35s ease;
         }
 
         .navbar.scrolled {
+            background: rgba(7,19,19,.92);
 
-            background:
-                rgba(7,19,19,0.90);
+            backdrop-filter: blur(20px);
 
-            backdrop-filter:
-                blur(20px);
-
-            border-bottom:
-                1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
 
-            font-size: 0.95rem;
+        /* LOGO */
+
+        .logo {
+            font-size: .95rem;
 
             font-weight: 900;
 
-            letter-spacing: 0.08em;
+            letter-spacing: .08em;
 
             white-space: nowrap;
         }
 
         .logo span {
-
             color: var(--gold);
 
             font-weight: 500;
         }
 
-        .nav-links {
 
+        /* NAV LINKS */
+
+        .nav-links {
             display: flex;
 
             align-items: center;
@@ -150,50 +132,44 @@
         }
 
         .nav-links a {
-
             position: relative;
 
             color: #c8d2cf;
 
-            font-size: 0.88rem;
+            font-size: .88rem;
 
             font-weight: 600;
-
-            transition: 0.3s ease;
         }
 
         .nav-links a:hover {
-
             color: white;
         }
 
         .nav-links a::after {
-
             content: "";
 
             position: absolute;
 
             left: 0;
-
             bottom: -7px;
 
             width: 0;
-
             height: 1px;
 
             background: var(--gold);
 
-            transition: 0.3s ease;
+            transition: .3s ease;
         }
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
-
             width: 100%;
         }
 
-        .menu-button {
 
+        /* MOBILE MENU */
+
+        .menu-button {
             display: none;
 
             border: none;
@@ -208,13 +184,12 @@
         }
 
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+        /* =========================
+           PAGE HERO
+        ========================= */
 
-        .hero {
-
-            min-height: 100vh;
+        .page-hero {
+            min-height: 75vh;
 
             position: relative;
 
@@ -224,27 +199,16 @@
 
             overflow: hidden;
 
-            /*
-              IMPORTANT:
-
-              Put your Makoko image inside:
-
-              images/makoko-hero.jpg
-
-              If your image has another name,
-              change the filename below.
-            */
-
             background-image:
 
                 linear-gradient(
                     90deg,
-                    rgba(7,19,19,0.90) 0%,
-                    rgba(7,19,19,0.68) 42%,
-                    rgba(7,19,19,0.28) 100%
+                    rgba(7,19,19,.92) 0%,
+                    rgba(7,19,19,.70) 45%,
+                    rgba(7,19,19,.30) 100%
                 ),
 
-                url("IMG_1901.jpg");
+                url("makoko history.jpg");
 
             background-size: cover;
 
@@ -253,55 +217,26 @@
             background-repeat: no-repeat;
         }
 
-
-        /* Dark overlay */
-
-        .hero::before {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(7,19,19,0.15),
-                    rgba(7,19,19,0.45)
-                );
-
-            pointer-events: none;
-        }
-
-
-        /* Large background text */
-
-        .hero::after {
-
-            content: "MAKOKO";
+        .page-hero::after {
+            content: "STORIES";
 
             position: absolute;
 
             right: -40px;
+            bottom: -70px;
 
-            bottom: -80px;
-
-            font-size: 18vw;
+            font-size: 17vw;
 
             font-weight: 900;
 
-            letter-spacing: -0.08em;
+            letter-spacing: -.08em;
 
-            color:
-                rgba(255,255,255,0.035);
+            color: rgba(255,255,255,.035);
 
             pointer-events: none;
         }
 
-
-        .hero-content {
-
+        .page-hero-content {
             position: relative;
 
             z-index: 2;
@@ -315,8 +250,10 @@
             padding: 150px 6% 90px;
         }
 
-        .eyebrow {
 
+        /* EYEBROW */
+
+        .eyebrow {
             display: flex;
 
             align-items: center;
@@ -325,66 +262,60 @@
 
             color: var(--gold);
 
-            font-size: 0.72rem;
+            font-size: .72rem;
 
             font-weight: 900;
 
-            letter-spacing: 0.18em;
+            letter-spacing: .18em;
 
             text-transform: uppercase;
         }
 
         .eyebrow::before {
-
             content: "";
 
             width: 34px;
-
             height: 1px;
 
             background: var(--gold);
         }
 
-        .hero h1 {
+
+        /* HERO TITLE */
+
+        .page-hero h1 {
+            max-width: 900px;
 
             margin-top: 25px;
 
-            max-width: 1000px;
+            font-size: clamp(4rem, 10vw, 9rem);
 
-            font-size:
-                clamp(4.5rem, 11vw, 10rem);
+            line-height: .82;
 
-            line-height: 0.78;
-
-            letter-spacing: -0.075em;
+            letter-spacing: -.07em;
 
             font-weight: 900;
         }
 
-        .hero h1 span {
-
+        .page-hero h1 span {
             display: block;
 
-            margin-top: 18px;
+            margin-top: 20px;
 
             color: var(--gold);
 
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
+            font-family: Georgia, "Times New Roman", serif;
 
-            font-size: 0.53em;
+            font-size: .48em;
 
             font-weight: 400;
 
             font-style: italic;
 
-            letter-spacing: -0.04em;
+            letter-spacing: -.03em;
         }
 
-        .hero-description {
-
+        .page-hero p {
             max-width: 650px;
 
             margin-top: 35px;
@@ -395,438 +326,202 @@
         }
 
 
-        /* =====================================================
-           BUTTONS
-        ===================================================== */
-
-        .buttons {
-
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 13px;
-
-            margin-top: 30px;
-        }
-
-        .btn {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 10px;
-
-            min-height: 52px;
-
-            padding: 0 23px;
-
-            border-radius: 999px;
-
-            border: 1px solid var(--border);
-
-            font-size: 0.88rem;
-
-            font-weight: 800;
-
-            transition: 0.3s ease;
-        }
-
-        .btn:hover {
-
-            transform:
-                translateY(-4px);
-        }
-
-        .btn-primary {
-
-            background: var(--gold);
-
-            color: #111;
-
-            border-color: var(--gold);
-        }
-
-        .btn-primary:hover {
-
-            background:
-                var(--gold-light);
-        }
-
-        .btn-outline {
-
-            background:
-                rgba(255,255,255,0.05);
-
-            color: white;
-
-            backdrop-filter:
-                blur(10px);
-        }
-
-        .btn-outline:hover {
-
-            background:
-                rgba(255,255,255,0.12);
-        }
-
-        .btn-dark {
-
-            background: #111;
-
-            color: white;
-
-            border-color: #111;
-        }
-
-
-        /* =====================================================
-           SCROLL INDICATOR
-        ===================================================== */
-
-        .scroll-indicator {
-
-            position: absolute;
-
-            bottom: 35px;
-
-            left: 6%;
-
-            z-index: 2;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 15px;
-
-            color: var(--muted);
-
-            font-size: 0.65rem;
-
-            font-weight: 800;
-
-            letter-spacing: 0.15em;
-        }
-
-        .scroll-line {
-
-            width: 55px;
-
-            height: 1px;
-
-            background:
-                var(--gold);
-        }
-
-
-        /* =====================================================
-           GENERAL SECTIONS
-        ===================================================== */
+        /* =========================
+           GENERAL SECTION
+        ========================= */
 
         .section {
-
             max-width: var(--max-width);
 
             margin: auto;
 
-            padding:
-                120px 6%;
+            padding: 120px 6%;
         }
 
         .section-label {
-
             color: var(--gold);
 
-            font-size: 0.7rem;
+            font-size: .7rem;
 
             font-weight: 900;
 
-            letter-spacing: 0.18em;
+            letter-spacing: .18em;
 
             text-transform: uppercase;
         }
 
         .section-header {
-
             display: flex;
 
-            align-items: end;
+            align-items: flex-end;
 
             justify-content: space-between;
 
-            gap: 40px;
+            gap: 30px;
 
             margin-bottom: 55px;
         }
 
         .section h2 {
+            margin-top: 15px;
 
-            max-width: 850px;
+            max-width: 900px;
 
-            margin-top: 14px;
+            font-size: clamp(2.8rem, 6vw, 6rem);
 
-            font-size:
-                clamp(2.8rem,6vw,6rem);
+            line-height: .95;
 
-            line-height: 0.9;
-
-            letter-spacing: -0.06em;
+            letter-spacing: -.06em;
         }
 
-        .muted {
+        .section-intro {
+            max-width: 650px;
 
             color: var(--muted);
-        }
 
-        .text-link {
-
-            display: inline-block;
+            font-size: 1.05rem;
 
             margin-top: 25px;
-
-            color: var(--gold);
-
-            font-weight: 800;
-
-            transition: 0.3s ease;
-        }
-
-        .text-link:hover {
-
-            transform:
-                translateX(5px);
-
-            color:
-                var(--gold-light);
         }
 
 
-        /* =====================================================
-           INTRO
-        ===================================================== */
+        /* =========================
+           FEATURED STORY
+        ========================= */
 
-        .intro {
-
-            border-bottom:
-                1px solid var(--border);
-        }
-
-        .intro-grid {
-
+        .featured-story {
             display: grid;
 
-            grid-template-columns:
-                1.15fr 0.85fr;
+            grid-template-columns: 1.1fr .9fr;
 
-            gap: 90px;
+            min-height: 600px;
 
-            margin-top: 50px;
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
         }
 
-        .intro-grid h3 {
+        .featured-image {
+            min-height: 600px;
 
-            font-size:
-                clamp(2.5rem,5vw,5.5rem);
-
-            line-height: 0.92;
-
-            letter-spacing: -0.06em;
+            overflow: hidden;
         }
 
-        .intro-grid p {
+        .featured-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform .7s ease;
+        }
+
+        .featured-story:hover .featured-image img {
+            transform: scale(1.04);
+        }
+
+        .featured-content {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding: 70px;
+        }
+
+        .featured-content h3 {
+            margin: 20px 0;
+
+            font-size: clamp(2.5rem, 5vw, 5rem);
+
+            line-height: .95;
+
+            letter-spacing: -.05em;
+        }
+
+        .featured-content p {
+            max-width: 500px;
 
             color: var(--muted);
 
-            margin-bottom: 18px;
+            margin-bottom: 30px;
         }
 
-        .intro-grid .big-text {
-
-            color: var(--white);
-
-            font-size:
-                clamp(1.3rem,2.4vw,1.9rem);
-
-            line-height: 1.35;
-        }
-
-
-        /* =====================================================
-           EXPLORE
-        ===================================================== */
-
-        .explore {
-
-            border-bottom:
-                1px solid var(--border);
-        }
-
-        .feature-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                1.2fr 0.8fr;
-
-            grid-template-rows:
-                300px 300px;
-
-            gap: 16px;
-        }
-
-        .feature {
-
-            position: relative;
-
-            overflow: hidden;
-
-            display: flex;
-
-            align-items: end;
-
-            padding: 30px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 26px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #2b625c,
-                    #0b1d1c
-                );
-
-            transition:
-                transform 0.4s ease,
-                border-color 0.4s ease;
-        }
-
-        .feature:hover {
-
-            transform:
-                translateY(-7px);
-
-            border-color:
-                rgba(214,180,106,0.45);
-        }
-
-        .feature-large {
-
-            grid-row:
-                span 2;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #39736b,
-                    #0b1e1d
-                );
-        }
-
-        .feature:nth-child(2) {
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #766342,
-                    #18211d
-                );
-        }
-
-        .feature:nth-child(3) {
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #28566d,
-                    #101c24
-                );
-        }
-
-        .feature-content {
-
-            position: relative;
-
-            z-index: 2;
-        }
-
-        .feature-number {
-
+        .story-tag {
             color: var(--gold);
 
-            font-size: 0.75rem;
+            font-size: .72rem;
 
             font-weight: 900;
-        }
 
-        .feature h3 {
+            letter-spacing: .15em;
 
-            margin: 8px 0;
-
-            font-size: 1.8rem;
-        }
-
-        .feature p {
-
-            max-width: 450px;
-
-            color:
-                #c4cfcc;
-
-            font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
 
-        /* =====================================================
-           STORIES
-        ===================================================== */
+        /* =========================
+           STORY CARDS
+        ========================= */
 
-        .stories {
-
-            border-bottom:
-                1px solid var(--border);
-        }
-
-        .story-box {
-
+        .stories-grid {
             display: grid;
 
-            grid-template-columns:
-                1.1fr 0.9fr;
+            grid-template-columns: repeat(3, 1fr);
 
-            min-height: 540px;
-
-            overflow: hidden;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 30px;
-
-            background:
-                var(--surface);
+            gap: 18px;
         }
 
-        .story-photo {
-
-            position: relative;
-
+        .story-card {
             min-height: 450px;
 
             overflow: hidden;
 
-            background:
-                #0d2020;
+            border: 1px solid var(--border);
+
+            border-radius: 24px;
+
+            background: var(--surface);
+
+            display: flex;
+
+            flex-direction: column;
+
+            transition: .35s ease;
         }
 
-        .story-photo img {
+        .story-card:hover {
+            transform: translateY(-7px);
 
+            border-color: rgba(214,180,106,.45);
+
+            background: var(--surface-light);
+        }
+
+
+        /* =========================
+           STORY CARD IMAGE
+        ========================= */
+
+        .story-card-image {
+            width: 100%;
+
+            height: 230px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+        .story-card-image img {
             width: 100%;
 
             height: 100%;
@@ -834,53 +529,172 @@
             object-fit: cover;
 
             display: block;
+
+            transition: transform .6s ease;
         }
 
-        .story-content {
+        .story-card:hover .story-card-image img {
+            transform: scale(1.07);
+        }
+
+        .story-card-image::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(7,19,19,.05),
+                    rgba(7,19,19,.55)
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* STORY CARD CONTENT */
+
+        .story-card-content {
+            padding: 28px 35px 35px;
 
             display: flex;
 
             flex-direction: column;
 
-            justify-content: center;
-
-            padding: 55px;
+            flex: 1;
         }
 
-        .story-content h3 {
+        .story-number {
+            color: var(--gold);
 
-            margin: 15px 0;
+            font-size: .75rem;
 
-            font-size:
-                clamp(2rem,4vw,4rem);
+            font-weight: 900;
 
-            line-height: 0.95;
-
-            letter-spacing: -0.05em;
+            margin-bottom: 18px;
         }
 
-        .story-content p {
+        .story-card h3 {
+            font-size: 2rem;
 
-            max-width: 500px;
+            line-height: 1;
 
+            margin-bottom: 15px;
+        }
+
+        .story-card p {
             color: var(--muted);
 
-            margin-bottom: 25px;
+            font-size: .92rem;
         }
 
 
-        /* =====================================================
-           VISIT
-        ===================================================== */
+        /* =========================
+           COMMUNITY VOICES
+        ========================= */
 
-        .visit {
+        .voices-box {
+            display: grid;
 
-            padding-top: 40px;
+            grid-template-columns: 1fr 1fr;
 
-            padding-bottom: 40px;
+            gap: 70px;
+
+            padding: 75px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #14302f,
+                    #091716
+                );
+
+            border: 1px solid var(--border);
         }
 
-        .visit-box {
+        .voices-box h2 {
+            margin-top: 15px;
+        }
+
+        .voices-text {
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .voices-text p {
+            color: var(--muted);
+
+            font-size: 1.05rem;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           HISTORY
+        ========================= */
+
+        .history {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .history-image {
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            border: 1px solid var(--border);
+        }
+
+        .history-image img {
+            width: 100%;
+
+            height: 500px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .history-content p {
+            color: var(--muted);
+
+            margin-top: 25px;
+
+            max-width: 550px;
+        }
+
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            max-width: var(--max-width);
+
+            margin: 0 auto 80px;
+
+            padding: 90px 6%;
+
+            border-radius: 30px;
+
+            background: var(--gold);
+
+            color: #111;
 
             display: flex;
 
@@ -888,153 +702,87 @@
 
             justify-content: space-between;
 
-            gap: 50px;
+            gap: 40px;
+        }
 
-            padding: 60px;
-
-            border-radius: 30px;
-
-            background:
-                var(--gold);
-
+        .cta .section-label {
             color: #111;
         }
 
-        .visit-box h2 {
+        .cta h2 {
+            margin-top: 15px;
 
-            color: #111;
+            max-width: 800px;
+
+            font-size: clamp(3rem, 6vw, 6rem);
+
+            line-height: .95;
+
+            letter-spacing: -.06em;
         }
 
-        .visit-box p {
+        .btn {
+            display: inline-flex;
 
-            max-width: 600px;
-
-            margin-top: 20px;
-
-            color: #333b34;
-        }
-
-
-        /* =====================================================
-           COMMUNITY
-        ===================================================== */
-
-        .community {
-
-            border-bottom:
-                1px solid var(--border);
-        }
-
-        .community-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 80px;
-
-            margin-top: 45px;
-        }
-
-        .community-grid .large {
-
-            font-size:
-                clamp(1.4rem,2.7vw,2.1rem);
-
-            line-height: 1.35;
-        }
-
-        .community-grid p {
-
-            color: var(--muted);
-        }
-
-
-        /* =====================================================
-           FINAL CTA
-        ===================================================== */
-
-        .final {
-
-            min-height: 75vh;
-
-            padding:
-                120px 6%;
-
-            display: flex;
-
-            flex-direction: column;
+            align-items: center;
 
             justify-content: center;
 
-            align-items: flex-start;
+            min-height: 52px;
 
-            gap: 45px;
+            padding: 0 23px;
 
-            background:
+            border-radius: 999px;
 
-                radial-gradient(
-                    circle at 80% 40%,
-                    rgba(111,197,189,0.2),
-                    transparent 32%
-                ),
+            font-size: .88rem;
 
-                linear-gradient(
-                    135deg,
-                    #102e2c,
-                    #071313
-                );
+            font-weight: 800;
+
+            transition: .3s ease;
         }
 
-        .final h2 {
+        .btn:hover {
+            transform: translateY(-4px);
+        }
 
-            margin-top: 25px;
+        .btn-dark {
+            background: #111;
 
-            max-width: 1100px;
-
-            font-size:
-                clamp(3rem,7vw,8rem);
-
-            line-height: 0.85;
-
-            letter-spacing: -0.07em;
+            color: white;
         }
 
 
-        /* =====================================================
+        /* =========================
            FOOTER
-        ===================================================== */
+        ========================= */
 
         footer {
+            max-width: var(--max-width);
 
-            padding:
-                70px 6% 35px;
+            margin: auto;
 
-            border-top:
-                1px solid var(--border);
+            padding: 70px 6% 30px;
 
             display: grid;
 
-            grid-template-columns:
-                1.5fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
 
-            gap: 40px;
+            gap: 50px;
 
             color: var(--muted);
+
+            border-top: 1px solid var(--border);
         }
 
         footer .logo {
-
             color: white;
+        }
 
-            display: inline-block;
-
-            margin-bottom: 12px;
+        footer p {
+            margin-top: 15px;
         }
 
         .footer-column {
-
             display: flex;
 
             flex-direction: column;
@@ -1042,145 +790,68 @@
             gap: 10px;
         }
 
-        .footer-column a {
+        .footer-column strong {
+            color: white;
 
-            font-size: 0.85rem;
+            font-size: .75rem;
 
-            transition: 0.3s ease;
+            letter-spacing: .15em;
+
+            margin-bottom: 8px;
         }
 
         .footer-column a:hover {
-
             color: var(--gold);
-
-            transform:
-                translateX(4px);
         }
 
         .copyright {
+            grid-column: 1 / -1;
 
-            grid-column:
-                1 / -1;
+            padding-top: 30px;
 
-            padding-top: 25px;
+            border-top: 1px solid var(--border);
 
-            border-top:
-                1px solid var(--border);
-
-            font-size: 0.75rem;
+            font-size: .8rem;
         }
 
 
-        /* =====================================================
-           ANIMATIONS
-        ===================================================== */
+        /* =========================
+           SCROLL REVEAL
+        ========================= */
 
         .reveal {
-
             opacity: 0;
 
-            transform:
-                translateY(35px);
+            transform: translateY(35px);
 
             transition:
-                opacity 0.8s ease,
-                transform 0.8s ease;
+                opacity .8s ease,
+                transform .8s ease;
         }
 
         .reveal.show {
-
             opacity: 1;
 
-            transform:
-                translateY(0);
+            transform: translateY(0);
         }
 
 
-        /* =====================================================
+        /* =========================
            TABLET
-        ===================================================== */
+        ========================= */
 
         @media (max-width: 950px) {
 
             .nav-links {
-
-                gap: 16px;
-            }
-
-            .intro-grid,
-            .story-box,
-            .community-grid {
-
-                grid-template-columns: 1fr;
-
-                gap: 45px;
-            }
-
-            .feature-grid {
-
-                grid-template-columns:
-                    1fr 1fr;
-
-                grid-template-rows:
-                    350px 250px;
-            }
-
-            .feature-large {
-
-                grid-column:
-                    1 / -1;
-
-                grid-row:
-                    auto;
-            }
-
-            footer {
-
-                grid-template-columns:
-                    1fr 1fr;
-            }
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 720px) {
-
-            .navbar {
-
-                padding:
-                    0 5%;
-            }
-
-            .logo {
-
-                font-size:
-                    0.8rem;
-            }
-
-            .logo span {
-
-                display:
-                    none;
-            }
-
-            .menu-button {
-
-                display:
-                    block;
-            }
-
-            .nav-links {
-
                 position: absolute;
 
-                top: 75px;
+                top: 82px;
 
-                left: 5%;
+                right: 6%;
 
-                right: 5%;
+                width: 240px;
+
+                padding: 25px;
 
                 display: none;
 
@@ -1188,157 +859,155 @@
 
                 align-items: flex-start;
 
-                gap: 18px;
+                background: rgba(7,19,19,.96);
 
-                padding: 25px;
+                backdrop-filter: blur(20px);
+
+                border: 1px solid var(--border);
 
                 border-radius: 18px;
-
-                background:
-                    rgba(9,26,26,0.98);
-
-                border:
-                    1px solid var(--border);
-
-                backdrop-filter:
-                    blur(20px);
             }
 
             .nav-links.open {
-
-                display:
-                    flex;
+                display: flex;
             }
 
-            .hero {
-
-                background-position:
-                    60% center;
+            .menu-button {
+                display: block;
             }
 
-            .hero-content {
-
-                padding:
-                    150px 5% 90px;
+            .featured-story,
+            .history,
+            .voices-box {
+                grid-template-columns: 1fr;
             }
 
-            .hero h1 {
-
-                font-size:
-                    clamp(4rem,20vw,7rem);
+            .featured-image {
+                min-height: 450px;
             }
 
-            .hero-description {
-
-                font-size:
-                    1rem;
+            .stories-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .buttons {
+            .voices-box {
+                gap: 35px;
 
-                flex-direction:
-                    column;
-
-                max-width:
-                    300px;
+                padding: 50px;
             }
 
-            .btn {
+            .cta {
+                flex-direction: column;
 
-                width:
-                    100%;
+                align-items: flex-start;
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 720px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: .8rem;
+            }
+
+            .page-hero-content {
+                padding: 130px 5% 80px;
+            }
+
+            .page-hero h1 {
+                font-size: clamp(4rem, 18vw, 6rem);
+            }
+
+            .page-hero p {
+                font-size: 1rem;
             }
 
             .section {
-
-                padding:
-                    80px 5%;
+                padding: 90px 5%;
             }
 
             .section-header {
+                align-items: flex-start;
 
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
+                flex-direction: column;
             }
 
-            .feature-grid {
-
-                display:
-                    grid;
-
-                grid-template-columns:
-                    1fr;
-
-                grid-template-rows:
-                    auto;
+            .featured-content {
+                padding: 40px 30px;
             }
 
-            .feature,
-            .feature-large {
-
-                min-height:
-                    320px;
-
-                grid-column:
-                    auto;
-
-                grid-row:
-                    auto;
+            .featured-image {
+                min-height: 350px;
             }
 
-            .story-content {
-
-                padding:
-                    35px;
+            .stories-grid {
+                grid-template-columns: 1fr;
             }
 
-            .story-photo {
-
-                min-height:
-                    330px;
+            .story-card {
+                min-height: 450px;
             }
 
-            .visit-box {
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    flex-start;
-
-                padding:
-                    35px;
+            .story-card-image {
+                height: 230px;
             }
 
-            .community-grid {
-
-                gap:
-                    25px;
+            .story-card-content {
+                padding: 25px;
             }
 
-            .final {
+            .voices-box {
+                padding: 40px 30px;
+            }
 
-                min-height:
-                    65vh;
+            .history-image img {
+                height: 350px;
+            }
 
-                padding:
-                    90px 5%;
+            .cta {
+                margin: 0 5% 60px;
+
+                padding: 60px 30px;
             }
 
             footer {
+                grid-template-columns: 1fr 1fr;
 
-                display:
-                    flex;
-
-                flex-direction:
-                    column;
-
-                padding:
-                    55px 5% 30px;
+                padding: 60px 5% 30px;
             }
+        }
+
+
+        /* =========================
+           SMALL PHONES
+        ========================= */
+
+        @media (max-width: 450px) {
+
+            .logo {
+                font-size: .7rem;
+            }
+
+            .page-hero h1 {
+                font-size: 4rem;
+            }
+
+            .story-card-image {
+                height: 210px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+
         }
 
     </style>
@@ -1349,66 +1018,46 @@
 <body>
 
 
-    <!-- =====================================================
+    <!-- =========================
          NAVIGATION
-    ===================================================== -->
+    ========================= -->
 
     <nav class="navbar" id="navbar">
 
-        <a href="index.html"
-           class="logo">
-
-            MAKOKO
-
-            <span>
-                — ON THE LAGOON
-            </span>
-
+        <a href="index.html" class="logo">
+            MAKOKO <span>— ON THE LAGOON</span>
         </a>
 
 
         <button
             class="menu-button"
             id="menuButton"
-            aria-label="Open navigation">
-
+            aria-label="Open navigation menu"
+        >
             ☰
-
         </button>
 
 
-        <div class="nav-links"
-             id="navLinks">
+        <div class="nav-links" id="navLinks">
 
-            <a href="index.html"
-               class="active">
-
+            <a href="index.html">
                 Home
-
             </a>
 
             <a href="explore.html">
-
                 Explore Makoko
-
             </a>
 
-            <a href="stories.html">
-
+            <a href="stories.html" class="active">
                 Stories
-
             </a>
 
             <a href="visit.html">
-
                 Visit
-
             </a>
 
             <a href="about.html">
-
                 About
-
             </a>
 
         </div>
@@ -1416,383 +1065,122 @@
     </nav>
 
 
-    <!-- =====================================================
-         MAIN
-    ===================================================== -->
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <header class="page-hero">
+
+        <div class="page-hero-content">
+
+            <div class="eyebrow">
+                03 — STORIES
+            </div>
+
+
+            <h1>
+                Stories
+
+                <span>
+                    from the lagoon.
+                </span>
+            </h1>
+
+
+            <p>
+                Real people, experiences, memories and perspectives
+                connected to Makoko. A space to listen to the voices
+                behind the community.
+            </p>
+
+        </div>
+
+    </header>
+
+
 
     <main>
 
 
-        <!-- =================================================
-             HERO
-        ================================================= -->
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <div class="eyebrow">
-
-                    LAGOS · NIGERIA
-
-                </div>
-
-
-                <h1>
-
-                    MAKOKO
-
-                    <span>
-                        on the lagoon.
-                    </span>
-
-                </h1>
-
-
-                <p class="hero-description">
-
-                    Discover the people, stories, culture
-                    and everyday life of a remarkable
-                    waterfront community.
-
-                </p>
-
-
-                <div class="buttons">
-
-                    <a
-                        href="explore.html"
-                        class="btn btn-primary">
-
-                        Explore Makoko
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-
-                    <a
-                        href="visit.html"
-                        class="btn btn-outline">
-
-                        Plan a Visit
-
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="scroll-indicator">
-
-                SCROLL TO DISCOVER
-
-                <span class="scroll-line"></span>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             INTRO
-        ================================================= -->
-
-        <section class="section intro reveal">
-
-            <div class="section-label">
-
-                01 — INTRODUCTION
-
-            </div>
-
-
-            <div class="intro-grid">
-
-                <div>
-
-                    <h3>
-
-                        There is more to Makoko
-                        than what you see
-                        from the shore.
-
-                    </h3>
-
-                </div>
-
-
-                <div>
-
-                    <p class="big-text">
-
-                        Makoko is a living community
-                        filled with people, families,
-                        businesses, creativity and dreams.
-
-                    </p>
-
-
-                    <p>
-
-                        Makoko — On the Lagoon is a
-                        digital doorway into those stories.
-
-                    </p>
-
-
-                    <a
-                        href="about.html"
-                        class="text-link">
-
-                        Discover our mission →
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             EXPLORE
-        ================================================= -->
-
-        <section class="section explore reveal">
+        <!-- =========================
+             INTRODUCTION
+        ========================= -->
+
+        <section class="section reveal">
 
             <div class="section-header">
 
                 <div>
 
                     <div class="section-label">
-
-                        02 — EXPLORE
-
+                        COMMUNITY VOICES
                     </div>
 
-
                     <h2>
-
-                        Come closer.
-
+                        Every person
+                        has a story.
                     </h2>
 
                 </div>
 
-
-                <a
-                    href="explore.html"
-                    class="text-link">
-
-                    Explore Makoko →
-
-                </a>
-
             </div>
 
 
-            <div class="feature-grid">
+            <p class="section-intro">
 
+                Makoko is made up of people with different lives,
+                experiences, skills, families and dreams. These stories
+                focus on people and the everyday realities that shape
+                life within the community.
 
-                <article class="feature feature-large">
-
-                    <div class="feature-content">
-
-                        <div class="feature-number">
-
-                            01
-
-                        </div>
-
-
-                        <h3>
-
-                            Life on the water
-
-                        </h3>
-
-
-                        <p>
-
-                            Discover how the lagoon
-                            shapes everyday life,
-                            movement and work.
-
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="feature">
-                    
-
-                    <div class="feature-content">
-
-                        <div class="feature-number">
-
-                            02
-
-                        </div>
-
-
-                        <h3>
-
-                            Culture & creativity
-
-                        </h3>
-
-
-                        <p>
-
-                            Explore traditions,
-                            skills and creativity
-                            within the community.
-
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-                <article class="feature">
-
-                    <div class="feature-content">
-                        
-                      
-
-                        <div class="feature-number">
-
-                            03
-
-                        </div>
-
-
-                        <h3>
-                            
-
-                            Young Makoko
-
-                        </h3>
-
-
-                        <p>
-
-                            Meet a generation
-                            imagining new possibilities
-                            for the future.
-
-                        </p>
-
-                    </div>
-
-                </article>
-
-            </div>
+            </p>
 
         </section>
-        
 
 
-        <!-- =================================================
-             STORIES
-        ================================================= -->
 
-        <section class="section stories reveal">
+        <!-- =========================
+             FEATURED STORY
+        ========================= -->
 
-            <div class="section-header">
+        <section class="section reveal">
 
-                <div>
-
-                    <div class="section-label">
-
-                        03 — STORIES
-
-                    </div>
+            <div class="featured-story">
 
 
-                    <h2>
-
-                        Told by people,
-                        not stereotypes.
-
-                    </h2>
-
-                </div>
-
-
-                <a
-                    href="stories.html"
-                    class="text-link">
-
-                    Read stories →
-
-                </a>
-
-            </div>
-
-
-            <div class="story-box">
-
-
-                <div class="story-photo">
-
-                    <!--
-                        Replace this with your own
-                        Makoko photograph.
-
-                        Example:
-
-                        images/makoko-story.jpg
-                    -->
+                <div class="featured-image">
 
                     <img
                         src="makoko history.jpg"
-                        alt="Makoko community">
+                        alt="Makoko community"
+                    >
 
                 </div>
 
 
-                <div class="story-content">
+                <div class="featured-content">
 
-                    <div class="eyebrow">
-
-                        COMMUNITY VOICES
-
+                    <div class="story-tag">
+                        FEATURED STORY
                     </div>
 
 
                     <h3>
-
-                        Every person
-                        has a story.
-
+                        Life shaped
+                        by the lagoon.
                     </h3>
 
 
                     <p>
-
-                        This space will feature real
-                        voices, experiences and
-                        perspectives from people
-                        connected to Makoko.
-
+                        For generations, the lagoon has influenced
+                        how people in Makoko move, work, build homes
+                        and connect with one another.
                     </p>
 
 
-                    <a
-                        href="stories.html"
-                        class="btn btn-primary">
-
-                        Explore Stories →
-
+                    <a href="#stories" class="btn btn-dark">
+                        Discover the stories ↓
                     </a>
 
                 </div>
@@ -1802,112 +1190,288 @@
         </section>
 
 
-        <!-- =================================================
-             VISIT
-        ================================================= -->
 
-        <section class="section visit reveal">
+        <!-- =========================
+             STORIES
+        ========================= -->
 
-            <div class="visit-box">
+        <section class="section reveal" id="stories">
+
+            <div class="section-header">
 
                 <div>
 
                     <div class="section-label">
+                        01 — PEOPLE
+                    </div>
 
-                        04 — VISIT
+                    <h2>
+                        Voices of Makoko.
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stories-grid">
+
+
+                <!-- STORY 01 -->
+
+                <article class="story-card">
+
+                    <div class="story-card-image">
+
+                        <img
+                            src="makoko history.jpg"
+                            alt="Life on the water in Makoko"
+                        >
 
                     </div>
 
 
+                    <div class="story-card-content">
+
+                        <div class="story-number">
+                            STORY 01
+                        </div>
+
+                        <h3>
+                            Life on the water
+                        </h3>
+
+                        <p>
+                            Explore how living on and around the lagoon
+                            shapes everyday routines, movement and work.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- STORY 02 -->
+
+                <article class="story-card">
+
+                    <div class="story-card-image">
+
+                        <img
+                            src="ChatGPT Image Oct 8, 2026, 03_53_43 PM.png"
+                            alt="Work and livelihood in Makoko"
+                        >
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <div class="story-number">
+                            STORY 02
+                        </div>
+
+                        <h3>
+                            Work &amp; livelihood
+                        </h3>
+
+                        <p>
+                            Learn about the different activities and
+                            livelihoods that support families within
+                            the community.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- STORY 03 -->
+
+                <article class="story-card">
+
+                    <div class="story-card-image">
+
+                        <img
+                            src="pexels-kade-3608662-10339594.jpg"
+                            alt="Young people in Makoko"
+                        >
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <div class="story-number">
+                            STORY 03
+                        </div>
+
+                        <h3>
+                            Young Makoko
+                        </h3>
+
+                        <p>
+                            Meet young people growing up in Makoko and
+                            hear about their interests, ambitions and
+                            hopes for the future.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- STORY 04 -->
+
+                <article class="story-card">
+
+                    <div class="story-card-image">
+
+                        <img
+                            src="makoko history.jpg"
+                            alt="Families and community life in Makoko"
+                        >
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <div class="story-number">
+                            STORY 04
+                        </div>
+
+                        <h3>
+                            Families &amp; community
+                        </h3>
+
+                        <p>
+                            Discover the relationships, cooperation and
+                            everyday connections that hold communities
+                            together.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- STORY 05 -->
+
+                <article class="story-card">
+
+                    <div class="story-card-image">
+
+                        <img
+                            src="mculture.jpg"
+                            alt="Culture and creativity in Makoko"
+                        >
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <div class="story-number">
+                            STORY 05
+                        </div>
+
+                        <h3>
+                            Culture &amp; creativity
+                        </h3>
+
+                        <p>
+                            Explore the traditions, skills, creativity
+                            and cultural expressions found in Makoko.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- STORY 06 -->
+
+                <article class="story-card">
+
+                    <div class="story-card-image">
+
+                        <img
+                            src="student 2.jpg"
+                            alt="The future of Makoko"
+                        >
+
+                    </div>
+
+
+                    <div class="story-card-content">
+
+                        <div class="story-number">
+                            STORY 06
+                        </div>
+
+                        <h3>
+                            Looking ahead
+                        </h3>
+
+                        <p>
+                            Hear different perspectives about education,
+                            technology, opportunity and the future of
+                            the next generation.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             COMMUNITY VOICES
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="voices-box">
+
+
+                <div>
+
+                    <div class="section-label">
+                        02 — LISTEN
+                    </div>
+
                     <h2>
-
-                        Want to experience
-                        Makoko?
-
+                        Told by people,
+                        not stereotypes.
                     </h2>
 
-
-                    <p>
-
-                        Whether you're interested in
-                        visiting, photography, research
-                        or community work, start with
-                        an inquiry.
-
-                    </p>
-
                 </div>
 
 
-                <a
-                    href="visit.html"
-                    class="btn btn-dark">
-
-                    Plan Your Visit →
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             COMMUNITY
-        ================================================= -->
-
-        <section
-            class="section community reveal">
-
-            <div class="section-label">
-
-                05 — COMMUNITY
-
-            </div>
-
-
-            <h2>
-
-                The future belongs
-                to the next generation.
-
-            </h2>
-
-
-            <div class="community-grid">
-
-                <div>
-
-                    <p class="large">
-
-                        Technology can create
-                        opportunities where
-                        opportunities are limited.
-
-                    </p>
-
-                </div>
-
-
-                <div>
+                <div class="voices-text">
 
                     <p>
-
-                        Makoko NextGen is a
-                        community-focused initiative
-                        exploring technology, education
-                        and opportunities for young people.
-
+                        Stories about communities should make space
+                        for people to speak about their own experiences.
                     </p>
 
-
-                    <a
-                        href="about.html"
-                        class="text-link">
-
-                        Discover the community →
-
-                    </a>
+                    <p>
+                        This section will grow through interviews,
+                        conversations, photographs and first-hand
+                        perspectives from people connected to Makoko.
+                    </p>
 
                 </div>
 
@@ -1916,63 +1480,96 @@
         </section>
 
 
-        <!-- =================================================
+
+        <!-- =========================
+             HISTORY
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="history">
+
+
+                <div class="history-image">
+
+                    <img
+                        src="makoko history.jpg"
+                        alt="Makoko community and lagoon"
+                    >
+
+                </div>
+
+
+                <div class="history-content">
+
+                    <div class="section-label">
+                        03 — HISTORY
+                    </div>
+
+                    <h2>
+                        Understanding
+                        where the stories
+                        come from.
+                    </h2>
+
+                    <p>
+                        Makoko has a long relationship with the
+                        lagoon and with fishing and other forms of
+                        waterfront life. Understanding that history
+                        provides context for the people and stories
+                        that make up the community today.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
              FINAL CTA
-        ================================================= -->
+        ========================= -->
 
-        <section class="final reveal">
+        <section class="cta reveal">
+
 
             <div>
 
-                <div class="eyebrow">
-
+                <div class="section-label">
                     MAKOKO — ON THE LAGOON
-
                 </div>
 
-
                 <h2>
-
-                    See Makoko.
-
-                    <br>
-
-                    Hear its stories.
-
-                    <br>
-
-                    Connect with its people.
-
+                    Explore the place
+                    behind the stories.
                 </h2>
 
             </div>
 
 
-            <a
-                href="explore.html"
-                class="btn btn-primary">
-
-                Start Exploring →
-
+            <a href="explore.html" class="btn btn-dark">
+                Explore Makoko →
             </a>
 
         </section>
 
+
     </main>
 
 
-    <!-- =====================================================
+
+    <!-- =========================
          FOOTER
-    ===================================================== -->
+    ========================= -->
 
     <footer>
 
 
         <div>
 
-            <a
-                href="index.html"
-                class="logo">
+            <a href="index.html" class="logo">
 
                 MAKOKO
 
@@ -1984,33 +1581,34 @@
 
 
             <p>
-
                 Discover. Listen. Connect.
-
             </p>
 
         </div>
 
 
+
         <div class="footer-column">
 
             <strong>
-
                 NAVIGATION
-
             </strong>
+
 
             <a href="index.html">
                 Home
             </a>
 
+
             <a href="explore.html">
                 Explore Makoko
             </a>
 
+
             <a href="stories.html">
                 Stories
             </a>
+
 
             <a href="visit.html">
                 Visit
@@ -2019,27 +1617,38 @@
         </div>
 
 
+
         <div class="footer-column">
 
             <strong>
-
                 MORE
-
             </strong>
+
 
             <a href="about.html">
                 About
             </a>
 
-            <a href="#">
-                Instagram
+
+            <a
+                href="https://www.instagram.com/makokoinlens/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Instagram · @makokoinlens
             </a>
 
-            <a href="#">
-                TikTok
+
+            <a
+                href="https://www.tiktok.com/@makokoinlens"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                TikTok · @makokoinlens
             </a>
 
         </div>
+
 
 
         <div class="copyright">
@@ -2052,90 +1661,84 @@
 
         </div>
 
+
     </footer>
 
 
-    <!-- =====================================================
+
+    <!-- =========================
          JAVASCRIPT
-    ===================================================== -->
+    ========================= -->
 
     <script>
 
 
-        /* =================================================
+        /* =========================
            MOBILE MENU
-        ================================================= */
+        ========================= */
 
         const menuButton =
             document.getElementById("menuButton");
+
 
         const navLinks =
             document.getElementById("navLinks");
 
 
-        menuButton.addEventListener(
-            "click",
-            () => {
+        menuButton.addEventListener("click", () => {
 
-                navLinks.classList.toggle("open");
+            navLinks.classList.toggle("open");
 
-            }
-        );
+        });
 
 
-        navLinks
-            .querySelectorAll("a")
-            .forEach(link => {
 
-                link.addEventListener(
-                    "click",
-                    () => {
+        /* =========================
+           CLOSE MENU AFTER CLICK
+        ========================= */
 
-                        navLinks.classList
-                            .remove("open");
+        navLinks.querySelectorAll("a").forEach(link => {
 
-                    }
-                );
+            link.addEventListener("click", () => {
+
+                navLinks.classList.remove("open");
 
             });
 
+        });
 
-        /* =================================================
+
+
+        /* =========================
            NAVBAR ON SCROLL
-        ================================================= */
+        ========================= */
 
         const navbar =
             document.getElementById("navbar");
 
 
-        window.addEventListener(
-            "scroll",
-            () => {
+        window.addEventListener("scroll", () => {
 
-                if (window.scrollY > 40) {
+            if (window.scrollY > 40) {
 
-                    navbar.classList
-                        .add("scrolled");
+                navbar.classList.add("scrolled");
 
-                } else {
+            } else {
 
-                    navbar.classList
-                        .remove("scrolled");
-
-                }
+                navbar.classList.remove("scrolled");
 
             }
-        );
+
+        });
 
 
-        /* =================================================
+
+        /* =========================
            SCROLL REVEAL
-        ================================================= */
+        ========================= */
 
         const revealElements =
-            document.querySelectorAll(
-                ".reveal"
-            );
+            document.querySelectorAll(".reveal");
 
 
         const revealObserver =
@@ -2143,26 +1746,19 @@
 
                 entries => {
 
-                    entries.forEach(
-                        entry => {
+                    entries.forEach(entry => {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
+                            entry.target.classList.add("show");
+
+                            revealObserver.unobserve(
                                 entry.target
-                                    .classList
-                                    .add("show");
-
-                                revealObserver
-                                    .unobserve(
-                                        entry.target
-                                    );
-
-                            }
+                            );
 
                         }
-                    );
+
+                    });
 
                 },
 
@@ -2173,26 +1769,24 @@
             );
 
 
-        revealElements.forEach(
-            element => {
+        revealElements.forEach(element => {
 
-                revealObserver.observe(
-                    element
-                );
+            revealObserver.observe(element);
 
-            }
-        );
+        });
 
 
-        /* =================================================
+
+        /* =========================
            CURRENT YEAR
-        ================================================= */
+        ========================= */
 
-        document.getElementById("year")
-            .textContent =
+        document.getElementById("year").textContent =
             new Date().getFullYear();
 
+
     </script>
+
 
 </body>
 

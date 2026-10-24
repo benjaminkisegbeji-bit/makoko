@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Makoko — On the Lagoon. Discover the people, stories, culture and life of Makoko.">
+
+    <title>Makoko — On the Lagoon</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+            background: #071313;
+            color: #f4f1e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --background: #071313;
+            --surface: #0d2020;
+            --surface-light: #14302f;
+            --gold: #d6b46a;
+            --gold-light: #e8cf8c;
+            --teal: #6fc5bd;
+            --white: #f4f1e8;
+            --muted: #9eafaa;
+            --border: rgba(255,255,255,0.12);
+            --max-width: 1450px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 82px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            transition: .35s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(7,19,19,.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: .95rem;
+            font-weight: 900;
+            letter-spacing: .08em;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: #c8d2cf;
+            font-size: .88rem;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: .3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .menu-button {
+            display: none;
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(7,19,19,.90) 0%,
+                    rgba(7,19,19,.68) 42%,
+                    rgba(7,19,19,.28) 100%
+                ),
+                url("IMG_1901.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(7,19,19,.15),
+                rgba(7,19,19,.45)
+            );
+        }
+
+        .hero::after {
+            content: "MAKOKO";
+            position: absolute;
+            right: -40px;
+            bottom: -80px;
+            font-size: 18vw;
+            font-weight: 900;
+            letter-spacing: -.08em;
+            color: rgba(255,255,255,.035);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-width);
+            width: 100%;
+            margin: auto;
+            padding: 150px 6% 90px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gold);
+            font-size: .72rem;
+            font-weight: 900;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero h1 {
+            margin-top: 25px;
+            max-width: 1000px;
+            font-size: clamp(4.5rem, 11vw, 10rem);
+            line-height: .78;
+            letter-spacing: -.075em;
+            font-weight: 900;
+        }
+
+        .hero h1 span {
+            display: block;
+            margin-top: 18px;
+            color: var(--gold);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: .53em;
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: -.04em;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            margin-top: 35px;
+            color: #c5d0cd;
+            font-size: 1.1rem;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 52px;
+            padding: 0 23px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            font-size: .88rem;
+            font-weight: 800;
+            transition: .3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #111;
+            border-color: var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+        }
+
+        .btn-outline {
+            background: rgba(255,255,255,.05);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-dark {
+            background: #111;
+            color: white;
+            border-color: #111;
+        }
+
+        /* =========================
+           SCROLL INDICATOR
+        ========================= */
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 35px;
+            left: 6%;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--muted);
+            font-size: .65rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+        }
+
+        .scroll-line {
+            width: 55px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        .section {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 120px 6%;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: .7rem;
+            font-weight: 900;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 55px;
+        }
+
+        .section h2 {
+            margin-top: 15px;
+            max-width: 800px;
+            font-size: clamp(2.8rem, 6vw, 6rem);
+            line-height: .95;
+            letter-spacing: -.06em;
+        }
+
+        .text-link {
+            color: var(--gold);
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .text-link:hover {
+            color: var(--gold-light);
+        }
+
+        /* =========================
+           INTRODUCTION
+        ========================= */
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: end;
+        }
+
+        .intro h2 {
+            font-size: clamp(3rem, 6vw, 6rem);
+        }
+
+        .intro-text {
+            max-width: 550px;
+        }
+
+        .intro-text p {
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           EXPLORE CARDS
+        ========================= */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            grid-template-rows: 300px 300px;
+            gap: 16px;
+        }
+
+        .feature {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: end;
+            padding: 30px;
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            background: linear-gradient(145deg,#2b625c,#0b1d1c);
+            transition: transform .4s ease,border-color .4s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-7px);
+            border-color: rgba(214,180,106,.45);
+        }
+
+        .feature-large {
+            grid-row: span 2;
+        }
+
+        /* IMAGE SUPPORT FOR THE THREE CARDS */
+
+        .feature-image {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .feature-image img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.06);
+        }
+
+        .feature-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,.88),
+                rgba(0,0,0,.08)
+            );
+            z-index: 1;
+        }
+
+        .feature-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-number {
+            color: var(--gold);
+            font-size: .75rem;
+            font-weight: 900;
+        }
+
+        .feature h3 {
+            margin: 8px 0;
+            font-size: 1.8rem;
+        }
+
+        .feature p {
+            max-width: 450px;
+            color: #c4cfcc;
+            font-size: .9rem;
+        }
+
+        /* =========================
+           STORIES
+        ========================= */
+
+        .story-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .story-photo img {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            object-fit: cover;
+        }
+
+        .story-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 70px;
+        }
+
+        .story-content h3 {
+            margin: 20px 0;
+            font-size: clamp(2.5rem,5vw,5rem);
+            line-height: .95;
+        }
+
+        .story-content p {
+            color: var(--muted);
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           VISIT
+        ========================= */
+
+        .visit-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 65px;
+            border-radius: 28px;
+            background: var(--gold);
+            color: #111;
+        }
+
+        .visit-box .section-label {
+            color: #111;
+        }
+
+        .visit-box h2 {
+            margin-top: 12px;
+        }
+
+        .visit-box p {
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        /* =========================
+           COMMUNITY
+        ========================= */
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            margin-top: 55px;
+        }
+
+        .community-grid p {
+            color: var(--muted);
+        }
+
+        .community-grid .large {
+            font-size: 2rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        /* =========================
+           FINAL CTA
+        ========================= */
+
+        .final {
+            max-width: var(--max-width);
+            margin: 0 auto 80px;
+            padding: 100px 6%;
+            border-radius: 30px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #14302f,
+                    #091716
+                );
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .final h2 {
+            margin-top: 20px;
+            font-size: clamp(3rem,6vw,6rem);
+            line-height: .95;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            max-width: var(--max-width);
+            margin: auto;
+            padding: 70px 6% 30px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        footer .logo {
+            color: white;
+        }
+
+        footer p {
+            margin-top: 15px;
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-column strong {
+            color: white;
+            font-size: .75rem;
+            letter-spacing: .15em;
+            margin-bottom: 8px;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            grid-column: 1 / -1;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            font-size: .8rem;
+        }
+
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .nav-links {
+                position: absolute;
+                top: 82px;
+                right: 6%;
+                width: 240px;
+                padding: 25px;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                background: rgba(7,19,19,.96);
+                backdrop-filter: blur(20px);
+                border: 1px solid var(--border);
+                border-radius: 18px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 350px 250px;
+            }
+
+            .feature-large {
+                grid-column: 1 / -1;
+                grid-row: auto;
+            }
+
+            .intro,
+            .story-box,
+            .community-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-content {
+                padding: 50px;
+            }
+
+            .visit-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 720px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: .8rem;
+            }
+
+            .hero-content {
+                padding: 130px 5% 90px;
+            }
+
+            .hero h1 {
+                font-size: clamp(4rem,18vw,6rem);
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 90px 5%;
+            }
+
+            .section-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .feature-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .feature,
+            .feature-large {
+                min-height: 320px;
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .story-photo img {
+                min-height: 350px;
+            }
+
+            .story-content {
+                padding: 35px;
+            }
+
+            .visit-box {
+                padding: 40px;
+            }
+
+            .community-grid {
+                gap: 35px;
+            }
+
+            .final {
+                margin: 0 5% 60px;
+                padding: 60px 30px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+                padding: 60px 5% 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="navbar" id="navbar">
+
+        <a href="index.html" class="logo">
+            MAKOKO <span>— ON THE LAGOON</span>
+        </a>
+
+        <button class="menu-button" id="menuButton">
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Home</a>
+            <a href="explore.html">Explore Makoko</a>
+            <a href="stories.html">Stories</a>
+            <a href="visit.html">Visit</a>
+            <a href="about.html">About</a>
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    LAGOS · NIGERIA
+                </div>
+
+                <h1>
+                    MAKOKO
+                    <span>on the lagoon.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Discover the people, stories, culture and everyday
+                    life of a remarkable waterfront community.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="explore.html" class="btn btn-primary">
+                        Explore Makoko →
+                    </a>
+
+                    <a href="visit.html" class="btn btn-outline">
+                        Plan a Visit
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="scroll-indicator">
+                <span class="scroll-line"></span>
+                SCROLL TO DISCOVER
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             INTRODUCTION
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="intro">
+
+                <div>
+
+                    <div class="section-label">
+                        01 — INTRODUCTION
+                    </div>
+
+                    <h2>
+                        There is more to Makoko
+                        than what you see
+                        from the shore.
+                    </h2>
+
+                </div>
+
+                <div class="intro-text">
+
+                    <p>
+                        Makoko is a living community filled with
+                        people, families, businesses, creativity
+                        and dreams.
+                    </p>
+
+                    <p>
+                        Makoko — On the Lagoon is a digital doorway
+                        into those stories.
+                    </p>
+
+                    <a href="about.html" class="text-link">
+                        Discover our mission →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             EXPLORE
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-label">
+                        02 — EXPLORE
+                    </div>
+
+                    <h2>
+                        Come closer.
+                    </h2>
+
+                </div>
+
+                <a href="explore.html" class="text-link">
+                    Explore Makoko →
+                </a>
+
+            </div>
+
+
+            <div class="feature-grid">
+
+                <!-- CARD 1 -->
+
+                <article class="feature feature-large feature-image">
+
+                    <img
+                        src="African Pride_.jpg"
+                        alt="Life on the water in Makoko"
+                    >
+
+                    <div class="feature-content">
+
+                        <div class="feature-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Life on the water
+                        </h3>
+
+                        <p>
+                            Discover how the lagoon shapes everyday
+                            life, movement and work.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article class="feature feature-image">
+
+                    <img
+                        src="culture.jpg"
+                        alt="Culture and creativity in Makoko"
+                    >
+
+                    <div class="feature-content">
+
+                        <div class="feature-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Culture & creativity
+                        </h3>
+
+                        <p>
+                            Explore traditions, skills and creativity
+                            within the community.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article class="feature feature-image">
+
+                    <img
+                        src="pexels-kade-3608662-10339594.jpg"
+                        alt="Young people in Makoko"
+                    >
+
+                    <div class="feature-content">
+
+                        <div class="feature-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Young Makoko
+                        </h3>
+
+                        <p>
+                            Meet a generation imagining new
+                            possibilities for the future.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STORIES
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="section-header">
+
+                <div>
+
+                    <div class="section-label">
+                        03 — STORIES
+                    </div>
+
+                    <h2>
+                        Told by people,
+                        not stereotypes.
+                    </h2>
+
+                </div>
+
+                <a href="stories.html" class="text-link">
+                    Read stories →
+                </a>
+
+            </div>
+
+
+            <div class="story-box">
+
+                <div class="story-photo">
+
+                    <img
+                        src="makoko history.jpg"
+                        alt="Makoko community"
+                    >
+
+                </div>
+
+                <div class="story-content">
+
+                    <div class="eyebrow">
+                        COMMUNITY VOICES
+                    </div>
+
+                    <h3>
+                        Every person
+                        has a story.
+                    </h3>
+
+                    <p>
+                        This space will feature real voices,
+                        experiences and perspectives from people
+                        connected to Makoko.
+                    </p>
+
+                    <a href="stories.html" class="btn btn-primary">
+                        Explore Stories →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VISIT
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="visit-box">
+
+                <div>
+
+                    <div class="section-label">
+                        04 — VISIT
+                    </div>
+
+                    <h2>
+                        Want to experience Makoko?
+                    </h2>
+
+                    <p>
+                        Whether you're interested in visiting,
+                        photography, research or community work,
+                        start with an inquiry.
+                    </p>
+
+                </div>
+
+                <a href="visit.html" class="btn btn-dark">
+                    Plan Your Visit →
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMMUNITY
+        ========================= -->
+
+        <section class="section reveal">
+
+            <div class="section-label">
+                05 — COMMUNITY
+            </div>
+
+            <h2>
+                The future belongs
+                to the next generation.
+            </h2>
+
+
+            <div class="community-grid">
+
+                <div>
+
+                    <p class="large">
+                        Technology can create opportunities
+                        where opportunities are limited.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <p>
+                        Makoko NextGen is a community-focused
+                        initiative exploring technology, education
+                        and opportunities for young people.
+                    </p>
+
+                    <br>
+
+                    <a href="about.html" class="text-link">
+                        Discover the community →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL CTA
+        ========================= -->
+
+        <section class="final reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    MAKOKO — ON THE LAGOON
+                </div>
+
+                <h2>
+                    See Makoko.
+                    <br>
+                    Hear its stories.
+                    <br>
+                    Connect with its people.
+                </h2>
+
+            </div>
+
+            <a href="explore.html" class="btn btn-primary">
+                Start Exploring →
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div>
+
+            <a href="index.html" class="logo">
+                MAKOKO
+                <span>— ON THE LAGOON</span>
+            </a>
+
+            <p>
+                Discover. Listen. Connect.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <strong>
+                NAVIGATION
+            </strong>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="explore.html">
+                Explore Makoko
+            </a>
+
+            <a href="stories.html">
+                Stories
+            </a>
+
+            <a href="visit.html">
+                Visit
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <strong>
+                MORE
+            </strong>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="https://www.instagram.com/makokoinlens" target="_blank">
+                Instagram
+            </a>
+
+            <a href="https://www.tiktok.com/@makokoinlens" target="_blank">
+                TikTok
+            </a>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © <span id="year"></span>
+            Makoko — On the Lagoon.
+            Built with purpose in Lagos.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* MOBILE MENU */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", () => {
+            navLinks.classList.toggle("open");
+        });
+
+
+        /* CLOSE MOBILE MENU AFTER CLICK */
+
+        navLinks.querySelectorAll("a").forEach(link => {
+
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("open");
+            });
+
+        });
+
+
+        /* NAVBAR ON SCROLL */
+
+        const navbar =
+            document.getElementById("navbar");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 40) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+
+        });
+
+
+        /* SCROLL REVEAL */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+
+        /* CURRENT YEAR */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
