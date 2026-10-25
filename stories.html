@@ -1,1793 +1,926 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="Makoko Stories — real people, experiences, history and community voices from Makoko.">
-
-    <title>Stories — Makoko On The Lagoon</title>
-
-
-    <style>
-
-        /* =========================
-           RESET
-        ========================= */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Inter, -apple-system, BlinkMacSystemFont,
-                "Segoe UI", sans-serif;
-
-            background: #071313;
-            color: #f4f1e8;
-
-            line-height: 1.6;
-
-            overflow-x: hidden;
-        }
-
-        :root {
-            --background: #071313;
-            --surface: #0d2020;
-            --surface-light: #14302f;
-
-            --gold: #d6b46a;
-            --gold-light: #e8cf8c;
-
-            --teal: #6fc5bd;
-
-            --white: #f4f1e8;
-            --muted: #9eafaa;
-
-            --border: rgba(255,255,255,0.12);
-
-            --max-width: 1450px;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font: inherit;
-        }
-
-
-        /* =========================
-           NAVIGATION
-        ========================= */
-
-        .navbar {
-            position: fixed;
-
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 82px;
-
-            padding: 0 6%;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            z-index: 1000;
-
-            transition: .35s ease;
-        }
-
-        .navbar.scrolled {
-            background: rgba(7,19,19,.92);
-
-            backdrop-filter: blur(20px);
-
-            border-bottom: 1px solid var(--border);
-        }
-
-
-        /* LOGO */
-
-        .logo {
-            font-size: .95rem;
-
-            font-weight: 900;
-
-            letter-spacing: .08em;
-
-            white-space: nowrap;
-        }
-
-        .logo span {
-            color: var(--gold);
-
-            font-weight: 500;
-        }
-
-
-        /* NAV LINKS */
-
-        .nav-links {
-            display: flex;
-
-            align-items: center;
-
-            gap: 28px;
-        }
-
-        .nav-links a {
-            position: relative;
-
-            color: #c8d2cf;
-
-            font-size: .88rem;
-
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        .nav-links a::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            bottom: -7px;
-
-            width: 0;
-            height: 1px;
-
-            background: var(--gold);
-
-            transition: .3s ease;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-
-        /* MOBILE MENU */
-
-        .menu-button {
-            display: none;
-
-            border: none;
-
-            background: transparent;
-
-            color: white;
-
-            font-size: 1.7rem;
-
-            cursor: pointer;
-        }
-
-
-        /* =========================
-           PAGE HERO
-        ========================= */
-
-        .page-hero {
-            min-height: 75vh;
-
-            position: relative;
-
-            display: flex;
-
-            align-items: center;
-
-            overflow: hidden;
-
-            background-image:
-
-                linear-gradient(
-                    90deg,
-                    rgba(7,19,19,.92) 0%,
-                    rgba(7,19,19,.70) 45%,
-                    rgba(7,19,19,.30) 100%
-                ),
-
-                url("makoko history.jpg");
-
-            background-size: cover;
-
-            background-position: center;
-
-            background-repeat: no-repeat;
-        }
-
-        .page-hero::after {
-            content: "STORIES";
-
-            position: absolute;
-
-            right: -40px;
-            bottom: -70px;
-
-            font-size: 17vw;
-
-            font-weight: 900;
-
-            letter-spacing: -.08em;
-
-            color: rgba(255,255,255,.035);
-
-            pointer-events: none;
-        }
-
-        .page-hero-content {
-            position: relative;
-
-            z-index: 2;
-
-            max-width: var(--max-width);
-
-            width: 100%;
-
-            margin: auto;
-
-            padding: 150px 6% 90px;
-        }
-
-
-        /* EYEBROW */
-
-        .eyebrow {
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            color: var(--gold);
-
-            font-size: .72rem;
-
-            font-weight: 900;
-
-            letter-spacing: .18em;
-
-            text-transform: uppercase;
-        }
-
-        .eyebrow::before {
-            content: "";
-
-            width: 34px;
-            height: 1px;
-
-            background: var(--gold);
-        }
-
-
-        /* HERO TITLE */
-
-        .page-hero h1 {
-            max-width: 900px;
-
-            margin-top: 25px;
-
-            font-size: clamp(4rem, 10vw, 9rem);
-
-            line-height: .82;
-
-            letter-spacing: -.07em;
-
-            font-weight: 900;
-        }
-
-        .page-hero h1 span {
-            display: block;
-
-            margin-top: 20px;
-
-            color: var(--gold);
-
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: .48em;
-
-            font-weight: 400;
-
-            font-style: italic;
-
-            letter-spacing: -.03em;
-        }
-
-        .page-hero p {
-            max-width: 650px;
-
-            margin-top: 35px;
-
-            color: #c5d0cd;
-
-            font-size: 1.1rem;
-        }
-
-
-        /* =========================
-           GENERAL SECTION
-        ========================= */
-
-        .section {
-            max-width: var(--max-width);
-
-            margin: auto;
-
-            padding: 120px 6%;
-        }
-
-        .section-label {
-            color: var(--gold);
-
-            font-size: .7rem;
-
-            font-weight: 900;
-
-            letter-spacing: .18em;
-
-            text-transform: uppercase;
-        }
-
-        .section-header {
-            display: flex;
-
-            align-items: flex-end;
-
-            justify-content: space-between;
-
-            gap: 30px;
-
-            margin-bottom: 55px;
-        }
-
-        .section h2 {
-            margin-top: 15px;
-
-            max-width: 900px;
-
-            font-size: clamp(2.8rem, 6vw, 6rem);
-
-            line-height: .95;
-
-            letter-spacing: -.06em;
-        }
-
-        .section-intro {
-            max-width: 650px;
-
-            color: var(--muted);
-
-            font-size: 1.05rem;
-
-            margin-top: 25px;
-        }
-
-
-        /* =========================
-           FEATURED STORY
-        ========================= */
-
-        .featured-story {
-            display: grid;
-
-            grid-template-columns: 1.1fr .9fr;
-
-            min-height: 600px;
-
-            border-radius: 28px;
-
-            overflow: hidden;
-
-            background: var(--surface);
-
-            border: 1px solid var(--border);
-        }
-
-        .featured-image {
-            min-height: 600px;
-
-            overflow: hidden;
-        }
-
-        .featured-image img {
-            width: 100%;
-
-            height: 100%;
-
-            object-fit: cover;
-
-            transition: transform .7s ease;
-        }
-
-        .featured-story:hover .featured-image img {
-            transform: scale(1.04);
-        }
-
-        .featured-content {
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-
-            padding: 70px;
-        }
-
-        .featured-content h3 {
-            margin: 20px 0;
-
-            font-size: clamp(2.5rem, 5vw, 5rem);
-
-            line-height: .95;
-
-            letter-spacing: -.05em;
-        }
-
-        .featured-content p {
-            max-width: 500px;
-
-            color: var(--muted);
-
-            margin-bottom: 30px;
-        }
-
-        .story-tag {
-            color: var(--gold);
-
-            font-size: .72rem;
-
-            font-weight: 900;
-
-            letter-spacing: .15em;
-
-            text-transform: uppercase;
-        }
-
-
-        /* =========================
-           STORY CARDS
-        ========================= */
-
-        .stories-grid {
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 18px;
-        }
-
-        .story-card {
-            min-height: 450px;
-
-            overflow: hidden;
-
-            border: 1px solid var(--border);
-
-            border-radius: 24px;
-
-            background: var(--surface);
-
-            display: flex;
-
-            flex-direction: column;
-
-            transition: .35s ease;
-        }
-
-        .story-card:hover {
-            transform: translateY(-7px);
-
-            border-color: rgba(214,180,106,.45);
-
-            background: var(--surface-light);
-        }
-
-
-        /* =========================
-           STORY CARD IMAGE
-        ========================= */
-
-        .story-card-image {
-            width: 100%;
-
-            height: 230px;
-
-            position: relative;
-
-            overflow: hidden;
-
-            flex-shrink: 0;
-        }
-
-        .story-card-image img {
-            width: 100%;
-
-            height: 100%;
-
-            object-fit: cover;
-
-            display: block;
-
-            transition: transform .6s ease;
-        }
-
-        .story-card:hover .story-card-image img {
-            transform: scale(1.07);
-        }
-
-        .story-card-image::after {
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(7,19,19,.05),
-                    rgba(7,19,19,.55)
-                );
-
-            pointer-events: none;
-        }
-
-
-        /* STORY CARD CONTENT */
-
-        .story-card-content {
-            padding: 28px 35px 35px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            flex: 1;
-        }
-
-        .story-number {
-            color: var(--gold);
-
-            font-size: .75rem;
-
-            font-weight: 900;
-
-            margin-bottom: 18px;
-        }
-
-        .story-card h3 {
-            font-size: 2rem;
-
-            line-height: 1;
-
-            margin-bottom: 15px;
-        }
-
-        .story-card p {
-            color: var(--muted);
-
-            font-size: .92rem;
-        }
-
-
-        /* =========================
-           COMMUNITY VOICES
-        ========================= */
-
-        .voices-box {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 70px;
-
-            padding: 75px;
-
-            border-radius: 28px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #14302f,
-                    #091716
-                );
-
-            border: 1px solid var(--border);
-        }
-
-        .voices-box h2 {
-            margin-top: 15px;
-        }
-
-        .voices-text {
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-        }
-
-        .voices-text p {
-            color: var(--muted);
-
-            font-size: 1.05rem;
-
-            margin-bottom: 20px;
-        }
-
-
-        /* =========================
-           HISTORY
-        ========================= */
-
-        .history {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 70px;
-
-            align-items: center;
-        }
-
-        .history-image {
-            overflow: hidden;
-
-            border-radius: 28px;
-
-            border: 1px solid var(--border);
-        }
-
-        .history-image img {
-            width: 100%;
-
-            height: 500px;
-
-            object-fit: cover;
-
-            display: block;
-        }
-
-        .history-content p {
-            color: var(--muted);
-
-            margin-top: 25px;
-
-            max-width: 550px;
-        }
-
-
-        /* =========================
-           CTA
-        ========================= */
-
-        .cta {
-            max-width: var(--max-width);
-
-            margin: 0 auto 80px;
-
-            padding: 90px 6%;
-
-            border-radius: 30px;
-
-            background: var(--gold);
-
-            color: #111;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 40px;
-        }
-
-        .cta .section-label {
-            color: #111;
-        }
-
-        .cta h2 {
-            margin-top: 15px;
-
-            max-width: 800px;
-
-            font-size: clamp(3rem, 6vw, 6rem);
-
-            line-height: .95;
-
-            letter-spacing: -.06em;
-        }
-
-        .btn {
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            min-height: 52px;
-
-            padding: 0 23px;
-
-            border-radius: 999px;
-
-            font-size: .88rem;
-
-            font-weight: 800;
-
-            transition: .3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-        }
-
-        .btn-dark {
-            background: #111;
-
-            color: white;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            max-width: var(--max-width);
-
-            margin: auto;
-
-            padding: 70px 6% 30px;
-
-            display: grid;
-
-            grid-template-columns: 2fr 1fr 1fr;
-
-            gap: 50px;
-
-            color: var(--muted);
-
-            border-top: 1px solid var(--border);
-        }
-
-        footer .logo {
-            color: white;
-        }
-
-        footer p {
-            margin-top: 15px;
-        }
-
-        .footer-column {
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 10px;
-        }
-
-        .footer-column strong {
-            color: white;
-
-            font-size: .75rem;
-
-            letter-spacing: .15em;
-
-            margin-bottom: 8px;
-        }
-
-        .footer-column a:hover {
-            color: var(--gold);
-        }
-
-        .copyright {
-            grid-column: 1 / -1;
-
-            padding-top: 30px;
-
-            border-top: 1px solid var(--border);
-
-            font-size: .8rem;
-        }
-
-
-        /* =========================
-           SCROLL REVEAL
-        ========================= */
-
-        .reveal {
-            opacity: 0;
-
-            transform: translateY(35px);
-
-            transition:
-                opacity .8s ease,
-                transform .8s ease;
-        }
-
-        .reveal.show {
-            opacity: 1;
-
-            transform: translateY(0);
-        }
-
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media (max-width: 950px) {
-
-            .nav-links {
-                position: absolute;
-
-                top: 82px;
-
-                right: 6%;
-
-                width: 240px;
-
-                padding: 25px;
-
-                display: none;
-
-                flex-direction: column;
-
-                align-items: flex-start;
-
-                background: rgba(7,19,19,.96);
-
-                backdrop-filter: blur(20px);
-
-                border: 1px solid var(--border);
-
-                border-radius: 18px;
-            }
-
-            .nav-links.open {
-                display: flex;
-            }
-
-            .menu-button {
-                display: block;
-            }
-
-            .featured-story,
-            .history,
-            .voices-box {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-image {
-                min-height: 450px;
-            }
-
-            .stories-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .voices-box {
-                gap: 35px;
-
-                padding: 50px;
-            }
-
-            .cta {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 720px) {
-
-            .navbar {
-                padding: 0 5%;
-            }
-
-            .logo {
-                font-size: .8rem;
-            }
-
-            .page-hero-content {
-                padding: 130px 5% 80px;
-            }
-
-            .page-hero h1 {
-                font-size: clamp(4rem, 18vw, 6rem);
-            }
-
-            .page-hero p {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 90px 5%;
-            }
-
-            .section-header {
-                align-items: flex-start;
-
-                flex-direction: column;
-            }
-
-            .featured-content {
-                padding: 40px 30px;
-            }
-
-            .featured-image {
-                min-height: 350px;
-            }
-
-            .stories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .story-card {
-                min-height: 450px;
-            }
-
-            .story-card-image {
-                height: 230px;
-            }
-
-            .story-card-content {
-                padding: 25px;
-            }
-
-            .voices-box {
-                padding: 40px 30px;
-            }
-
-            .history-image img {
-                height: 350px;
-            }
-
-            .cta {
-                margin: 0 5% 60px;
-
-                padding: 60px 30px;
-            }
-
-            footer {
-                grid-template-columns: 1fr 1fr;
-
-                padding: 60px 5% 30px;
-            }
-        }
-
-
-        /* =========================
-           SMALL PHONES
-        ========================= */
-
-        @media (max-width: 450px) {
-
-            .logo {
-                font-size: .7rem;
-            }
-
-            .page-hero h1 {
-                font-size: 4rem;
-            }
-
-            .story-card-image {
-                height: 210px;
-            }
-
-            footer {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-    </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Makoko Stories — people, experiences, history and community voices from Makoko.">
+  <meta name="theme-color" content="#071313">
+  <title>Stories — Makoko On The Lagoon</title>
+
+  <style>
+    :root {
+      --background: #071313;
+      --surface: #0d2020;
+      --surface-light: #14302f;
+      --gold: #d6b46a;
+      --gold-light: #e8cf8c;
+      --white: #f4f1e8;
+      --muted: #9eafaa;
+      --border: rgba(255,255,255,.12);
+      --max-width: 1450px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 120px;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--white);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAV: always visible, no menu button */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 24px;
+      min-height: 82px;
+      padding: 14px 6%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(7,19,19,.96);
+      backdrop-filter: blur(18px);
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px 24px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: #c8d2cf;
+      font-size: .84rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:not(.plan-visit-link)::after {
+      position: absolute;
+      right: 0;
+      bottom: -6px;
+      left: 0;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s ease;
+    }
+
+    .nav-links a:not(.plan-visit-link):hover,
+    .nav-links a:not(.plan-visit-link).active {
+      color: var(--white);
+    }
+
+    .nav-links a:not(.plan-visit-link):hover::after,
+    .nav-links a:not(.plan-visit-link).active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links .plan-visit-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      background: var(--gold);
+      color: #111b18;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .nav-links .plan-visit-link:hover {
+      background: var(--gold-light);
+      color: #111b18;
+    }
+
+    .nav-links .plan-visit-link::after {
+      display: none;
+    }
+
+    /* HERO */
+
+    .page-hero {
+      position: relative;
+      display: flex;
+      min-height: 75vh;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(7,19,19,.92), rgba(7,19,19,.7) 45%, rgba(7,19,19,.3)),
+        url("makoko history.jpg") center / cover no-repeat;
+    }
+
+    .page-hero::after {
+      position: absolute;
+      right: -40px;
+      bottom: -70px;
+      color: rgba(255,255,255,.035);
+      content: "STORIES";
+      font-size: 17vw;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      pointer-events: none;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 100px 6%;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 34px;
+      height: 1px;
+      background: var(--gold);
+      content: "";
+    }
+
+    .page-hero h1 {
+      max-width: 900px;
+      margin-top: 25px;
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -.07em;
+      line-height: .82;
+    }
+
+    .page-hero h1 span {
+      display: block;
+      margin-top: 20px;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .48em;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -.03em;
+    }
+
+    .page-hero p {
+      max-width: 650px;
+      margin-top: 35px;
+      color: #c5d0cd;
+      font-size: 1.05rem;
+    }
+
+    /* GENERAL SECTIONS */
+
+    .section {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 100px 6%;
+    }
+
+    .section-label,
+    .story-tag {
+      color: var(--gold);
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+
+    .section h2 {
+      max-width: 900px;
+      margin-top: 15px;
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      letter-spacing: -.06em;
+      line-height: .95;
+    }
+
+    .section-intro {
+      max-width: 650px;
+      margin-top: 25px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    /* FEATURED STORY */
+
+    .featured-story {
+      display: grid;
+      min-height: 560px;
+      grid-template-columns: 1.1fr .9fr;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--surface);
+    }
+
+    .featured-image {
+      min-height: 480px;
+      overflow: hidden;
+    }
+
+    .featured-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s ease;
+    }
+
+    .featured-story:hover .featured-image img {
+      transform: scale(1.04);
+    }
+
+    .featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(30px, 6vw, 70px);
+    }
+
+    .featured-content h2 {
+      margin: 20px 0;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: -.05em;
+      line-height: .95;
+    }
+
+    .featured-content p {
+      max-width: 500px;
+      margin-bottom: 28px;
+      color: var(--muted);
+    }
+
+    .button {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #111;
+      font-size: .85rem;
+      font-weight: 900;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      background: var(--gold-light);
+    }
+
+    /* STORY CARDS */
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .story-card {
+      display: flex;
+      min-height: 430px;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface);
+      transition: transform .3s ease, border-color .3s ease, background .3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214,180,106,.45);
+      background: var(--surface-light);
+    }
+
+    .story-card-image {
+      position: relative;
+      height: 230px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .story-card-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .story-card:hover .story-card-image img {
+      transform: scale(1.06);
+    }
+
+    .story-card-image::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent, rgba(7,19,19,.45));
+      content: "";
+      pointer-events: none;
+    }
+
+    .story-card-content {
+      flex: 1;
+      padding: 26px;
+    }
+
+    .story-number {
+      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+
+    .story-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.65rem;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+
+    .story-card p {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    /* COMMUNITY VOICES */
+
+    .voices-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: clamp(30px, 6vw, 70px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: linear-gradient(135deg, #14302f, #091716);
+    }
+
+    .voices-box h2 {
+      margin-top: 15px;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: -.06em;
+      line-height: .95;
+    }
+
+    .voices-text {
+      align-self: center;
+      color: var(--muted);
+    }
+
+    .voices-text p + p {
+      margin-top: 18px;
+    }
+
+    /* HISTORY */
+
+    .history {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .history-image {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+    }
+
+    .history-image img {
+      display: block;
+      width: 100%;
+      height: 470px;
+      object-fit: cover;
+    }
+
+    .history-content h2 {
+      margin-top: 15px;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: -.06em;
+      line-height: .95;
+    }
+
+    .history-content p {
+      max-width: 550px;
+      margin-top: 22px;
+      color: var(--muted);
+    }
+
+    /* FINAL CTA */
+
+    .cta {
+      max-width: calc(var(--max-width) - 12%);
+      margin: 0 auto 80px;
+      padding: clamp(35px, 7vw, 75px);
+      border: 1px solid rgba(214,180,106,.3);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(214,180,106,.14), transparent 40%),
+        var(--surface);
+    }
+
+    .cta h2 {
+      max-width: 800px;
+      margin-top: 15px;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: -.06em;
+      line-height: .95;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin-top: 18px;
+      color: var(--muted);
+    }
+
+    .cta .button {
+      margin-top: 25px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 55px 6% 28px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: grid;
+      max-width: var(--max-width);
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 35px;
+      margin: auto;
+    }
+
+    .footer-logo {
+      color: var(--white);
+      font-size: .9rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .footer-logo span {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .footer-about p {
+      margin-top: 12px;
+      font-size: .85rem;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .footer-column strong {
+      margin-bottom: 5px;
+      color: var(--white);
+      font-size: .7rem;
+      letter-spacing: .14em;
+    }
+
+    .footer-column a {
+      font-size: .84rem;
+      transition: color .2s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--gold-light);
+    }
+
+    .copyright {
+      max-width: var(--max-width);
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: .75rem;
+    }
+
+    /* SMALL SCREENS: navigation stays visible and wraps */
+
+    @media (max-width: 900px) {
+      .navbar {
+        justify-content: center;
+        padding: 14px 4%;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 12px 18px;
+      }
+
+      .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featured-story,
+      .history {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-image {
+        min-height: 380px;
+      }
+
+      .history-image img {
+        height: 380px;
+      }
+
+      .cta {
+        margin-right: 5%;
+        margin-left: 5%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        gap: 12px;
+        padding: 13px 5%;
+      }
+
+      .logo {
+        font-size: .78rem;
+      }
+
+      .logo span {
+        display: none;
+      }
+
+      .nav-links {
+        gap: 10px 15px;
+      }
+
+      .nav-links a {
+        font-size: .77rem;
+      }
+
+      .nav-links .plan-visit-link {
+        padding: 8px 12px;
+      }
+
+      .page-hero {
+        min-height: 68vh;
+        background-position: 58% center;
+      }
+
+      .page-hero-content {
+        padding: 75px 5%;
+      }
+
+      .page-hero h1 {
+        font-size: clamp(3.8rem, 17vw, 6rem);
+      }
+
+      .page-hero p {
+        font-size: .95rem;
+      }
+
+      .section {
+        padding: 75px 5%;
+      }
+
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .featured-image {
+        min-height: 300px;
+      }
+
+      .featured-content {
+        padding: 32px 25px;
+      }
+
+      .stories-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-card {
+        min-height: auto;
+      }
+
+      .voices-box {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .history-image img {
+        height: 300px;
+      }
+
+      .cta {
+        margin-bottom: 55px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-about {
+        grid-column: 1 / -1;
+      }
+
+      footer {
+        padding: 45px 5% 25px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .nav-links {
+        column-gap: 11px;
+      }
+
+      .nav-links a {
+        font-size: .72rem;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-about {
+        grid-column: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
-
 <body>
+  <header class="navbar">
+    <a class="logo" href="index.html">MAKOKO <span>— ON THE LAGOON</span></a>
 
-
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
-
-    <nav class="navbar" id="navbar">
-
-        <a href="index.html" class="logo">
-            MAKOKO <span>— ON THE LAGOON</span>
-        </a>
-
-
-        <button
-            class="menu-button"
-            id="menuButton"
-            aria-label="Open navigation menu"
-        >
-            ☰
-        </button>
-
-
-        <div class="nav-links" id="navLinks">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="explore.html">
-                Explore Makoko
-            </a>
-
-            <a href="stories.html" class="active">
-                Stories
-            </a>
-
-            <a href="visit.html">
-                Visit
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
-        </div>
-
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore Makoko</a>
+      <a href="stories.html" class="active" aria-current="page">Stories</a>
+      <a href="visit.html#inquiry" class="plan-visit-link">Plan a Visit →</a>
+      <a href="about.html">About</a>
     </nav>
+  </header>
 
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <div class="eyebrow">03 — STORIES</div>
+        <h1>Stories <span>from the lagoon.</span></h1>
+        <p>
+          Real people, experiences, memories and perspectives connected to
+          Makoko. A space to listen to the voices behind the community.
+        </p>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="section-label">COMMUNITY VOICES</div>
+      <h2>Every person<br>has a story.</h2>
+      <p class="section-intro">
+        Makoko is made up of people with different lives, experiences, skills,
+        families and dreams. These stories focus on people and the everyday
+        realities that shape life within the community.
+      </p>
+    </section>
 
-    <!-- =========================
-         HERO
-    ========================= -->
-
-    <header class="page-hero">
-
-        <div class="page-hero-content">
-
-            <div class="eyebrow">
-                03 — STORIES
-            </div>
-
-
-            <h1>
-                Stories
-
-                <span>
-                    from the lagoon.
-                </span>
-            </h1>
-
-
-            <p>
-                Real people, experiences, memories and perspectives
-                connected to Makoko. A space to listen to the voices
-                behind the community.
-            </p>
-
+    <section class="section">
+      <article class="featured-story">
+        <div class="featured-image">
+          <img src="makoko history.jpg" alt="Makoko community and lagoon" loading="lazy">
         </div>
-
-    </header>
-
-
-
-    <main>
-
-
-        <!-- =========================
-             INTRODUCTION
-        ========================= -->
-
-        <section class="section reveal">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-label">
-                        COMMUNITY VOICES
-                    </div>
-
-                    <h2>
-                        Every person
-                        has a story.
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-            <p class="section-intro">
-
-                Makoko is made up of people with different lives,
-                experiences, skills, families and dreams. These stories
-                focus on people and the everyday realities that shape
-                life within the community.
-
-            </p>
-
-        </section>
-
-
-
-        <!-- =========================
-             FEATURED STORY
-        ========================= -->
-
-        <section class="section reveal">
-
-            <div class="featured-story">
-
-
-                <div class="featured-image">
-
-                    <img
-                        src="makoko history.jpg"
-                        alt="Makoko community"
-                    >
-
-                </div>
-
-
-                <div class="featured-content">
-
-                    <div class="story-tag">
-                        FEATURED STORY
-                    </div>
-
-
-                    <h3>
-                        Life shaped
-                        by the lagoon.
-                    </h3>
-
-
-                    <p>
-                        For generations, the lagoon has influenced
-                        how people in Makoko move, work, build homes
-                        and connect with one another.
-                    </p>
-
-
-                    <a href="#stories" class="btn btn-dark">
-                        Discover the stories ↓
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             STORIES
-        ========================= -->
-
-        <section class="section reveal" id="stories">
-
-            <div class="section-header">
-
-                <div>
-
-                    <div class="section-label">
-                        01 — PEOPLE
-                    </div>
-
-                    <h2>
-                        Voices of Makoko.
-                    </h2>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="stories-grid">
-
-
-                <!-- STORY 01 -->
-
-                <article class="story-card">
-
-                    <div class="story-card-image">
-
-                        <img
-                            src="makoko history.jpg"
-                            alt="Life on the water in Makoko"
-                        >
-
-                    </div>
-
-
-                    <div class="story-card-content">
-
-                        <div class="story-number">
-                            STORY 01
-                        </div>
-
-                        <h3>
-                            Life on the water
-                        </h3>
-
-                        <p>
-                            Explore how living on and around the lagoon
-                            shapes everyday routines, movement and work.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- STORY 02 -->
-
-                <article class="story-card">
-
-                    <div class="story-card-image">
-
-                        <img
-                            src="ChatGPT Image Oct 8, 2026, 03_53_43 PM.png"
-                            alt="Work and livelihood in Makoko"
-                        >
-
-                    </div>
-
-
-                    <div class="story-card-content">
-
-                        <div class="story-number">
-                            STORY 02
-                        </div>
-
-                        <h3>
-                            Work &amp; livelihood
-                        </h3>
-
-                        <p>
-                            Learn about the different activities and
-                            livelihoods that support families within
-                            the community.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- STORY 03 -->
-
-                <article class="story-card">
-
-                    <div class="story-card-image">
-
-                        <img
-                            src="pexels-kade-3608662-10339594.jpg"
-                            alt="Young people in Makoko"
-                        >
-
-                    </div>
-
-
-                    <div class="story-card-content">
-
-                        <div class="story-number">
-                            STORY 03
-                        </div>
-
-                        <h3>
-                            Young Makoko
-                        </h3>
-
-                        <p>
-                            Meet young people growing up in Makoko and
-                            hear about their interests, ambitions and
-                            hopes for the future.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- STORY 04 -->
-
-                <article class="story-card">
-
-                    <div class="story-card-image">
-
-                        <img
-                            src="makoko history.jpg"
-                            alt="Families and community life in Makoko"
-                        >
-
-                    </div>
-
-
-                    <div class="story-card-content">
-
-                        <div class="story-number">
-                            STORY 04
-                        </div>
-
-                        <h3>
-                            Families &amp; community
-                        </h3>
-
-                        <p>
-                            Discover the relationships, cooperation and
-                            everyday connections that hold communities
-                            together.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- STORY 05 -->
-
-                <article class="story-card">
-
-                    <div class="story-card-image">
-
-                        <img
-                            src="mculture.jpg"
-                            alt="Culture and creativity in Makoko"
-                        >
-
-                    </div>
-
-
-                    <div class="story-card-content">
-
-                        <div class="story-number">
-                            STORY 05
-                        </div>
-
-                        <h3>
-                            Culture &amp; creativity
-                        </h3>
-
-                        <p>
-                            Explore the traditions, skills, creativity
-                            and cultural expressions found in Makoko.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-
-                <!-- STORY 06 -->
-
-                <article class="story-card">
-
-                    <div class="story-card-image">
-
-                        <img
-                            src="student 2.jpg"
-                            alt="The future of Makoko"
-                        >
-
-                    </div>
-
-
-                    <div class="story-card-content">
-
-                        <div class="story-number">
-                            STORY 06
-                        </div>
-
-                        <h3>
-                            Looking ahead
-                        </h3>
-
-                        <p>
-                            Hear different perspectives about education,
-                            technology, opportunity and the future of
-                            the next generation.
-                        </p>
-
-                    </div>
-
-                </article>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             COMMUNITY VOICES
-        ========================= -->
-
-        <section class="section reveal">
-
-            <div class="voices-box">
-
-
-                <div>
-
-                    <div class="section-label">
-                        02 — LISTEN
-                    </div>
-
-                    <h2>
-                        Told by people,
-                        not stereotypes.
-                    </h2>
-
-                </div>
-
-
-                <div class="voices-text">
-
-                    <p>
-                        Stories about communities should make space
-                        for people to speak about their own experiences.
-                    </p>
-
-                    <p>
-                        This section will grow through interviews,
-                        conversations, photographs and first-hand
-                        perspectives from people connected to Makoko.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             HISTORY
-        ========================= -->
-
-        <section class="section reveal">
-
-            <div class="history">
-
-
-                <div class="history-image">
-
-                    <img
-                        src="makoko history.jpg"
-                        alt="Makoko community and lagoon"
-                    >
-
-                </div>
-
-
-                <div class="history-content">
-
-                    <div class="section-label">
-                        03 — HISTORY
-                    </div>
-
-                    <h2>
-                        Understanding
-                        where the stories
-                        come from.
-                    </h2>
-
-                    <p>
-                        Makoko has a long relationship with the
-                        lagoon and with fishing and other forms of
-                        waterfront life. Understanding that history
-                        provides context for the people and stories
-                        that make up the community today.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             FINAL CTA
-        ========================= -->
-
-        <section class="cta reveal">
-
-
-            <div>
-
-                <div class="section-label">
-                    MAKOKO — ON THE LAGOON
-                </div>
-
-                <h2>
-                    Explore the place
-                    behind the stories.
-                </h2>
-
-            </div>
-
-
-            <a href="explore.html" class="btn btn-dark">
-                Explore Makoko →
-            </a>
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer>
-
-
+        <div class="featured-content">
+          <div class="story-tag">FEATURED STORY</div>
+          <h2>Life shaped<br>by the lagoon.</h2>
+          <p>
+            For generations, the lagoon has influenced how people in Makoko
+            move, work, build homes and connect with one another.
+          </p>
+          <a href="#stories" class="button">Discover the stories ↓</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="section-header">
         <div>
-
-            <a href="index.html" class="logo">
-
-                MAKOKO
-
-                <span>
-                    — ON THE LAGOON
-                </span>
-
-            </a>
-
-
-            <p>
-                Discover. Listen. Connect.
-            </p>
-
+          <div class="section-label">01 — PEOPLE</div>
+          <h2>Voices of Makoko.</h2>
         </div>
+      </div>
 
+      <div class="stories-grid">
+        <article class="story-card">
+          <div class="story-card-image">
+            <img src="makoko history.jpg" alt="Life on the water in Makoko" loading="lazy">
+          </div>
+          <div class="story-card-content">
+            <div class="story-number">STORY 01</div>
+            <h3>Life on the water</h3>
+            <p>Explore how living on and around the lagoon shapes everyday routines, movement and work.</p>
+          </div>
+        </article>
 
+        <article class="story-card">
+          <div class="story-card-image">
+            <img src="ChatGPT Image Oct 8, 2026, 03_53_43 PM.png" alt="Work and livelihood in Makoko" loading="lazy">
+          </div>
+          <div class="story-card-content">
+            <div class="story-number">STORY 02</div>
+            <h3>Work &amp; livelihood</h3>
+            <p>Learn about activities and livelihoods that support families within the community.</p>
+          </div>
+        </article>
 
-        <div class="footer-column">
+        <article class="story-card">
+          <div class="story-card-image">
+            <img src="pexels-kade-3608662-10339594.jpg" alt="Young people in Makoko" loading="lazy">
+          </div>
+          <div class="story-card-content">
+            <div class="story-number">STORY 03</div>
+            <h3>Young Makoko</h3>
+            <p>Meet young people growing up in Makoko and hear about their interests, ambitions and hopes.</p>
+          </div>
+        </article>
 
-            <strong>
-                NAVIGATION
-            </strong>
+        <article class="story-card">
+          <div class="story-card-image">
+            <img src="makoko history.jpg" alt="Families and community life in Makoko" loading="lazy">
+          </div>
+          <div class="story-card-content">
+            <div class="story-number">STORY 04</div>
+            <h3>Families &amp; community</h3>
+            <p>Discover the relationships, cooperation and everyday connections that hold communities together.</p>
+          </div>
+        </article>
 
+        <article class="story-card">
+          <div class="story-card-image">
+            <img src="mculture.jpg" alt="Culture and creativity in Makoko" loading="lazy">
+          </div>
+          <div class="story-card-content">
+            <div class="story-number">STORY 05</div>
+            <h3>Culture &amp; creativity</h3>
+            <p>Explore the traditions, skills, creativity and cultural expressions found in Makoko.</p>
+          </div>
+        </article>
 
-            <a href="index.html">
-                Home
-            </a>
+        <article class="story-card">
+          <div class="story-card-image">
+            <img src="student 2.jpg" alt="The future of Makoko" loading="lazy">
+          </div>
+          <div class="story-card-content">
+            <div class="story-number">STORY 06</div>
+            <h3>Looking ahead</h3>
+            <p>Hear perspectives about education, technology, opportunity and the next generation’s future.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-
-            <a href="explore.html">
-                Explore Makoko
-            </a>
-
-
-            <a href="stories.html">
-                Stories
-            </a>
-
-
-            <a href="visit.html">
-                Visit
-            </a>
-
+    <section class="section">
+      <div class="voices-box">
+        <div>
+          <div class="section-label">02 — LISTEN</div>
+          <h2>Told by people,<br>not stereotypes.</h2>
         </div>
-
-
-
-        <div class="footer-column">
-
-            <strong>
-                MORE
-            </strong>
-
-
-            <a href="about.html">
-                About
-            </a>
-
-
-            <a
-                href="https://www.instagram.com/makokoinlens/"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Instagram · @makokoinlens
-            </a>
-
-
-            <a
-                href="https://www.tiktok.com/@makokoinlens"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                TikTok · @makokoinlens
-            </a>
-
+        <div class="voices-text">
+          <p>Stories about communities should make space for people to speak about their own experiences.</p>
+          <p>
+            This section will grow through interviews, conversations,
+            photographs and first-hand perspectives from people connected to Makoko.
+          </p>
         </div>
+      </div>
+    </section>
 
-
-
-        <div class="copyright">
-
-            © <span id="year"></span>
-
-            Makoko — On the Lagoon.
-
-            Built with purpose in Lagos.
-
+    <section class="section">
+      <div class="history">
+        <div class="history-image">
+          <img src="makoko history.jpg" alt="Makoko community and lagoon" loading="lazy">
         </div>
+        <div class="history-content">
+          <div class="section-label">03 — HISTORY</div>
+          <h2>Understanding where the stories come from.</h2>
+          <p>
+            Makoko has a long relationship with the lagoon and with fishing
+            and other forms of waterfront life. Understanding that history
+            provides context for the people and stories that make up the
+            community today.
+          </p>
+        </div>
+      </div>
+    </section>
 
+    <section class="cta">
+      <div class="section-label">MAKOKO — ON THE LAGOON</div>
+      <h2>Explore the place behind the stories.</h2>
+      <p>Discover more about the waterways, places and everyday life of Makoko.</p>
+      <a href="explore.html" class="button">Explore Makoko →</a>
+    </section>
+  </main>
 
-    </footer>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-about">
+        <a href="index.html" class="footer-logo">MAKOKO <span>— ON THE LAGOON</span></a>
+        <p>Discover. Listen. Connect.</p>
+      </div>
 
+      <nav class="footer-column" aria-label="Footer navigation">
+        <strong>NAVIGATION</strong>
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore Makoko</a>
+        <a href="stories.html" aria-current="page">Stories</a>
+        <a href="visit.html#inquiry">Plan a Visit</a>
+      </nav>
 
+      <div class="footer-column">
+        <strong>MORE</strong>
+        <a href="about.html">About</a>
+        <a href="https://www.instagram.com/makokoinlens/" target="_blank" rel="noopener noreferrer">Instagram · @makokoinlens</a>
+        <a href="https://www.tiktok.com/@makokoinlens" target="_blank" rel="noopener noreferrer">TikTok · @makokoinlens</a>
+      </div>
+    </div>
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
+    <div class="copyright">
+      © <span id="year"></span> Makoko — On the Lagoon. Built with purpose in Lagos.
+    </div>
+  </footer>
 
-    <script>
-
-
-        /* =========================
-           MOBILE MENU
-        ========================= */
-
-        const menuButton =
-            document.getElementById("menuButton");
-
-
-        const navLinks =
-            document.getElementById("navLinks");
-
-
-        menuButton.addEventListener("click", () => {
-
-            navLinks.classList.toggle("open");
-
-        });
-
-
-
-        /* =========================
-           CLOSE MENU AFTER CLICK
-        ========================= */
-
-        navLinks.querySelectorAll("a").forEach(link => {
-
-            link.addEventListener("click", () => {
-
-                navLinks.classList.remove("open");
-
-            });
-
-        });
-
-
-
-        /* =========================
-           NAVBAR ON SCROLL
-        ========================= */
-
-        const navbar =
-            document.getElementById("navbar");
-
-
-        window.addEventListener("scroll", () => {
-
-            if (window.scrollY > 40) {
-
-                navbar.classList.add("scrolled");
-
-            } else {
-
-                navbar.classList.remove("scrolled");
-
-            }
-
-        });
-
-
-
-        /* =========================
-           SCROLL REVEAL
-        ========================= */
-
-        const revealElements =
-            document.querySelectorAll(".reveal");
-
-
-        const revealObserver =
-            new IntersectionObserver(
-
-                entries => {
-
-                    entries.forEach(entry => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add("show");
-
-                            revealObserver.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-
-                {
-                    threshold: 0.12
-                }
-
-            );
-
-
-        revealElements.forEach(element => {
-
-            revealObserver.observe(element);
-
-        });
-
-
-
-        /* =========================
-           CURRENT YEAR
-        ========================= */
-
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
-
-
-    </script>
-
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
